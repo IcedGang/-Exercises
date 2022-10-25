@@ -1,0 +1,3 @@
+- 👋 Hi, I’m Vítor Coutinho &
+- This repository is just 
+- to store my programming exercises!!!
