@@ -1,2 +1,2 @@
-# Exercises-LP3
-# Vítor Coutinho Lima
+Exercises-LP3
+Vítor Coutinho Lima
