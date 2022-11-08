@@ -92,20 +92,4 @@ public class Contato {
         return idade - 1;
     }
 
-
-    
-
-    
-
-    
-
-    
-
-   
-
-    
-
-    
-
-
 }
