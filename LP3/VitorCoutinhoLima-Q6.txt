@@ -1,0 +1,70 @@
+//Questão 6 da lista 1
+//Vítor Coutinho Lima - 202121119
+
+modelo ContaBancariaSimplificada
+início do modelo
+	//Dados da conta
+	dado nomeDoUsuario; 
+	dado saldo;
+	dado tipoDaConta; //Se a conta é especial ou comum
+	
+	//Abre a conta com dados inseridos pelo usuário
+	operação abreConta(nome, valorDeDeposito, especial)
+		início
+			//Verifica se o valor usado para abrir a conta é negativo
+			se ((valorDeDeposito < 0) e (especial == verdadeiro))
+				início
+					imprime "O saldo dessa conta iniciará negativo!";
+				fim
+			senão
+				início
+					imprime "A conta não é epecial, portanto não pode ser aberta com saldo negativo";
+					//Encerra o programa
+				fim
+				
+			nomeDoUsuario = nome;
+			saldo = valorDeDeposito;
+			tipoDaConta = especial;
+		fim
+	
+	//Abre a conta só com o nome inserido pelo usuário, outros valores são valores default
+	operação abreContaSimples(nome)
+		início
+			nomeDoUsuario = nome;
+			saldo = 0.00;
+			tipoDaConta = falso //conta comum;
+		fim
+	
+	//Deposita um valor na conta
+	operação deposito(valor)
+		início
+			saldo = saldo + valor;
+		fim
+	
+	//Retira um valor da conta
+	operação saque(valor)
+		início
+			se (tipoDaConta == falso) //Se a conta for comum
+				início
+					se (valor <= saldo) //Verifica se exite saldo suficiente
+						saldo = saldo - valor;
+					senão
+						imprime "Saldo insuficiente!";
+				fim
+			senão //Conta epecial, logo não é problema retirar
+				saldo = saldo - valor;
+		fim
+	
+	//Imprime os dados da conta e seus valores
+	operação mostrarDados()
+		início
+			imprime "Correntista: ";
+			imprime nomeDoUsuario;
+			imprime "Saldo da conta: ";
+			imprime saldo;
+			se(tipoDaConta)
+				imprime "Conta epecial!";
+			senão
+				imprime "Conta comum!";
+		fim
+fim do modelo

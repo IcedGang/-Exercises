@@ -1,0 +1,55 @@
+﻿//Questão 11 da lista 1
+//Vítor Coutinho Lima - 202121119
+
+//O modelo Livro por ser genérico, não precisa ser relacionado a uma funcinalidade 
+//já o modelo LivroDeBiblioteca precisa de um metodo para o empréstimo do livro
+//pois essa é uma especialidade do modelo
+
+modelo LivroDeBiblioteca
+início do modelo
+	//Dados do livro
+	dado tituloLivro;
+	dado categoria;
+	dado nomeAutor;
+	dado editora;
+	dado anoLançamento;
+	dado disponibilidade; //Se está disponível(verdadeiro) ou emprestado(falso)
+	
+	//Pede um livro emprestado
+	operação emprestarLivro(nome)
+	início
+		se(disponibilidade == verdadeiro)
+			início
+				disponibilidade = falso;
+				
+				imprime "O livro ";
+				imprime tituloLivro;
+				imprime	"foi emprestado para ";
+				imprime nome;
+			fim
+		senão
+			imprime "O livro não está disponível para empréstimo!";
+	fim
+	
+	//Imprime as informações sobre o livro
+	operação infoLivro()
+	início
+		imprime "Título: ";
+		imprime tituloLivro;
+		imprime "Categoria: ";
+		imprime categoria;
+		imprime "Nome do Autor: ";
+		imprime nomeAutor;
+		imprime "Ano de lançamento: ";
+		imprime anoLançamento;
+		imprime "Editora: ";
+		imprime editora;
+		se (disponibilidade == falso)
+			imprime "O livro não está disponível";
+		senão
+			imprime "O livro está disponível";
+	fim
+fim do modelo
+		
+	
+	
