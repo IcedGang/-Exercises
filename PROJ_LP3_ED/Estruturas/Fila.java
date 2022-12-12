@@ -2,6 +2,7 @@ package Estruturas;
 
 // Fila de tipo genérico 
 public class Fila<Type> {
+    
     private Lista<Type> fila; // Usando uma lista para representar uma Fila 
     
     private No<Type> primeiro; // Primeiro da fila
@@ -10,30 +11,30 @@ public class Fila<Type> {
     // Inicia a fila
     public Fila(){
         this.fila = new Lista<>();
-        primeiro = null;
-        ultimo = null;
+        this.primeiro = null;
+        this.ultimo = null;
     }
 
     // Adiciona elementos na fila
     public void enfileirar(Type info){
-        fila.inserirFinal(info);
+        No<Type> x = new No<Type>(info);
+        
+        fila.inserirFinal(x);
         this.primeiro = fila.getInicio();
         this.ultimo = fila.getFim();
     }
 
     // Remove elementos da fila
     public void desenfileirar(){
-        //Verifica se a fila está vazia
-        if(!fila.isEmpty()){
-            fila.removerInicio();
-            this.primeiro = fila.getInicio();
-            this.ultimo = fila.getFim();
-        }
-        else{
-            System.out.println("Fila está vazia, impossível remover!!");
-            System.exit(0);
-        }
-        
+        fila.removerInicio();
+        this.primeiro = fila.getInicio();
+        this.ultimo = fila.getFim();
+
+    }
+
+    // Imprime a fila inteira
+    public String imprimeFila(){
+        return fila.imprimeLista();
     }
 
     // Retorna o primeiro da fila
@@ -46,6 +47,7 @@ public class Fila<Type> {
         return this.ultimo;
     }   
 
+    // Mostra o inicio, o final e o tamanho da fila
     @Override
     public String toString() {
         String str = "Fila: \n" + fila.toString();

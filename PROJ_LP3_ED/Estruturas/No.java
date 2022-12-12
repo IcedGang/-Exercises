@@ -2,11 +2,12 @@ package Estruturas;
 
 // Nó tipo genérico
 public class No<Type> {
+    
     private Type info; // informação contida no nó
     private No<Type> anterior; // aponta para o nó anterior
     private No<Type> proximo; // aponta para o proximo nó
     
-    // Cria o primeiro nó da lista
+    // Cria um nó com informação
     public No(Type info) {
         this.info = info;
         this.anterior = null;
@@ -18,6 +19,7 @@ public class No<Type> {
         this(null);
     }
 
+    // Getters e Setters
     public Type getInfo() {
         return info;
     }
@@ -42,9 +44,10 @@ public class No<Type> {
         this.proximo = proximo;
     }
 
+    // Mostra a informação contida no Nó
     @Override
     public String toString() {
-        return "[info = " + info + "]";
+        return info + "\n";
     }
 
 

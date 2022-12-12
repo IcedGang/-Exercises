@@ -1,31 +1,57 @@
-import Classes.*;
+import Arquivos.Arquivo;
+import Classes.Produtos.Produto;
+import Classes.Usuarios.Admim;
 import Estruturas.*;
 
 public class Teste {
     public static void main(String[] args) {
-        // Mouse x = new Mouse("Mouse Gamer", 450, 5, "periferico", "oex", 23);
-        // Usuario teste = new Usuario("Vítor", "03485147516", "adasdasd", "addadwadaw", "vclima.cic@uesc.br");
-        // Lista<Integer> l = new Lista<>(); 
-        Fila<Integer> f = new Fila<>();
+        Admim admin = new Admim();
+        
+        String arqv = "teste.txt";
 
-        f.enfileirar(1);
-        System.out.println(f);
+        /*
+        Ordem de inserir os dados dos produtos:
 
-        f.desenfileirar();
-        f.desenfileirar();
-        System.out.println(f);
+        Produto; Preço; QntEstoque; CódigoProduto 
+        Categoria; Marca; Especificidade: Mouse - DPI
+                                          Teclado - isMecanico
+                                          Fone --
+        */
 
-        // teste.compraProduto(x, 3);
+        No<Produto> x1 = admin.newProduct(1);
+        No<Produto> x2 = admin.newProduct(2);
+        No<Produto> x3 = admin.newProduct(3);
 
-        // l.inserirInicio(3);
-        // l.inserirInicio(2);
-        // l.inserirInicio(1);
-        // System.out.println(l.imprimeLista());
+        // String texto = Arquivo.read(arqv);
 
-        // l.removerInicio();
-        // System.out.println(l.imprimeLista());
+        String aux = x1.toString();
+        aux += x2.toString();
+        aux += x3.toString();
 
-        // l.removerFinal();
-        // System.out.println(l.imprimeLista());
+        if(Arquivo.write(arqv, aux))
+            System.out.println("Sucess!");
+        else
+            System.out.println("Error!");
+
+
+        Lista<Produto> lista = new Lista<>();
+        lista.inserirFinal(x1);
+        lista.inserirFinal(x2);
+        lista.inserirFinal(x3);
+
+        System.out.println(lista.imprimeLista());
+
+        admin.addQntProduct(lista, 35, 4);
+        lista = admin.removeProduct(lista, x3);
+
+        System.out.println(lista.imprimeLista());
+        
+        aux = lista.imprimeLista();
+        if(Arquivo.write(arqv, aux))
+            System.out.println("Sucess!");
+        else
+            System.out.println("Error!");
+
+
     }
 }

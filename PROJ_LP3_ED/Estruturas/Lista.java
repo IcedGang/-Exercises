@@ -1,5 +1,7 @@
 package Estruturas;
 
+import Classes.Produtos.Produto;
+
 // Lista de tipo genérico
 public class Lista<Type> {
     
@@ -14,8 +16,8 @@ public class Lista<Type> {
         this.fim = null;
     }
 
-    public void inserirInicio(Type info){
-        No<Type> node = new No<>(info);
+    public void inserirInicio(No<Type> info){
+        No<Type> node = info;
         
         // Se a lista estiver vazia insere o primeiro elemento
         if(isEmpty())
@@ -32,8 +34,8 @@ public class Lista<Type> {
         this.tam += 1;
     }
 
-    public void inserirFinal(Type info){
-        No<Type> node = new No<>(info);
+    public void inserirFinal(No<Type> info){
+        No<Type> node = info;
         
         // Se a lista estiver vazia insere o primeiro elemento;
         if(isEmpty())
@@ -71,7 +73,7 @@ public class Lista<Type> {
         }
         // Lista está vazia
         else{
-            System.out.println("Lista Vazia, impossível remover!!");
+            System.out.println("Estrutura Vazia, impossível remover!!");
             System.exit(0);
             
         }
@@ -98,10 +100,65 @@ public class Lista<Type> {
         }
         // Lista está vazia
         else{
-            System.out.println("Lista Vazia, impossível remover!!");
+            System.out.println("Estrutura Vazia, impossível remover!!");
             System.exit(0);
             
         }
+    }
+
+    // Remove um nó específico
+    public No<Type> remover(Type info){
+        No<Type> x = null;
+        // Se a lista não estiver vazia
+        if(!isEmpty()){
+            No<Type> node = new No<>();
+            node = this.inicio;
+            Type aux = node.getInfo();
+
+            // Procura o nó
+            while(node != null && aux != info){
+                node = node.getProximo();
+                aux = node.getInfo();
+            }
+
+            // Não encontrou o nó
+            if(node == null){
+                System.out.println("Nó não encontrado!");
+                System.exit(0);
+            }
+            
+            // Para n perder a referencia
+            x = node;  
+            
+            // Remove o nó
+            if(node.getAnterior() != null)
+                node.getAnterior().setProximo(node.getProximo());
+            
+            if(node.getProximo() != null)
+                node.getProximo().setAnterior(node.getAnterior());
+
+        }   
+        // Lista está vazia
+        else{
+            System.out.println("Estrutura Vazia, impossível remover!!");
+            System.exit(0);
+            
+        }
+
+        return x;
+    }
+
+    // Sobrecargas do método remover
+    public No<Type> remover(int info){
+        No<Type> x = remover(info);
+
+        return x;
+    }
+
+    public No<Type> remover(Produto info){
+        No<Type> x = remover(info.getCodigo());
+
+        return x;
     }
 
     // Imprime a lista inteira
@@ -112,11 +169,11 @@ public class Lista<Type> {
 
         // Enquanto node != null
         while(node != null){
-            str += node + " --> ";
+            str += node + "\n";
             node = node.getProximo();
         }
 
-        return str + "null";
+        return str;
     }
 
     // Retorna o tam
